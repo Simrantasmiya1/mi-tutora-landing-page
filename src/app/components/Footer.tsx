@@ -1,177 +1,209 @@
 import { motion } from 'motion/react';
-import { Phone, Mail, MapPin, Facebook, Twitter, Instagram, Linkedin, Youtube } from 'lucide-react';
+import {
+  Phone,
+  Mail,
+  MapPin,
+  Instagram,
+  Facebook,
+  Linkedin,
+} from 'lucide-react';
+
 import logo from '../../imports/image.png';
 
 export function Footer() {
-  const quickLinks = [
-    { name: 'Home', href: '#hero' },
-    { name: 'Services', href: '#services' },
-    { name: 'How It Works', href: '#how-it-works' },
-    { name: 'Testimonials', href: '#testimonials' },
-    { name: 'FAQ', href: '#faq' },
-    { name: 'Contact', href: '#contact' },
-  ];
-
-  const services = [
-    'Home Tuition',
-    'Online Classes',
-    'NEET/JEE Coaching',
-    'Coding Classes',
-    'Language Learning',
-    'Study Abroad Prep',
-  ];
-
-  const socialLinks = [
-    { icon: Facebook, href: '#', label: 'Facebook' },
-    { icon: Instagram, href: '#', label: 'Instagram' },
-    { icon: Twitter, href: '#', label: 'Twitter' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
-    { icon: Youtube, href: '#', label: 'YouTube' },
-  ];
-
-  const scrollToSection = (id: string) => {
-    const element = document.querySelector(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  };
-
   return (
-    <footer className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
-      {/* Top decorative gradient */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-500/50 to-transparent" />
+    <footer className="bg-slate-950 text-white pt-16 pb-8">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-          {/* Company Info */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <img src={logo} alt="Mi Tutora" className="h-12 w-auto mb-4" />
-            <p className="text-slate-400 mb-6 leading-relaxed">
-              India's most trusted education platform connecting students with expert tutors.
-            </p>
-            <div className="flex space-x-3">
-              {socialLinks.map((social) => (
-                <motion.a
-                  key={social.label}
-                  href={social.href}
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-10 h-10 bg-white/5 hover:bg-emerald-500/20 border border-white/10 hover:border-emerald-500/50 rounded-lg flex items-center justify-center transition-all"
-                  aria-label={social.label}
-                >
-                  <social.icon className="w-5 h-5" />
-                </motion.a>
-              ))}
+        {/* TOP SECTION */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 border-b border-slate-800 pb-12">
+
+          {/* COMPANY */}
+          <div>
+
+            {/* LOGO */}
+            <div className="mb-4">
+              <img
+                src={logo}
+                alt="Mi Tutora"
+                className="h-16 w-auto object-contain"
+              />
             </div>
-          </motion.div>
 
-          {/* Quick Links */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-          >
-            <h3 className="text-lg font-bold mb-4">Quick Links</h3>
-            <ul className="space-y-3">
-              {quickLinks.map((link) => (
-                <li key={link.name}>
-                  <button
-                    onClick={() => scrollToSection(link.href)}
-                    className="text-slate-400 hover:text-emerald-400 transition-colors"
-                  >
-                    {link.name}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
+            <p className="text-slate-400 leading-relaxed mb-6">
+              Trusted home tuition and online learning platform helping
+              students achieve academic excellence across India.
+            </p>
 
-          {/* Services */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <h3 className="text-lg font-bold mb-4">Our Services</h3>
-            <ul className="space-y-3">
-              {services.map((service) => (
-                <li key={service}>
-                  <span className="text-slate-400">{service}</span>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
+            {/* SOCIAL ICONS */}
+            <div className="flex items-center gap-4">
 
-          {/* Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            <h3 className="text-lg font-bold mb-4">Contact Us</h3>
-            <ul className="space-y-4">
+              <a
+                href="#"
+                className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-[#00a992] transition"
+              >
+                <Instagram className="w-5 h-5" />
+              </a>
+
+              <a
+                href="#"
+                className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-[#00a992] transition"
+              >
+                <Facebook className="w-5 h-5" />
+              </a>
+
+              <a
+                href="#"
+                className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-[#00a992] transition"
+              >
+                <Linkedin className="w-5 h-5" />
+              </a>
+
+            </div>
+          </div>
+
+          {/* QUICK LINKS */}
+          <div>
+            <h3 className="text-xl font-semibold mb-5">
+              Quick Links
+            </h3>
+
+            <ul className="space-y-3 text-slate-400">
+
               <li>
-                <a
-                  href="tel:+917483034168"
-                  className="flex items-start space-x-3 text-slate-400 hover:text-emerald-400 transition-colors group"
-                >
-                  <Phone className="w-5 h-5 mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform" />
-                  <div>
-                    <div>+91 74830 34168</div>
-                    <div>+91 9773980489</div>
-                  </div>
+                <a href="#hero" className="hover:text-[#00a992] transition">
+                  Home
                 </a>
               </li>
+
               <li>
-                <a
-                  href="mailto:musharrafak06@gmail.com"
-                  className="flex items-start space-x-3 text-slate-400 hover:text-emerald-400 transition-colors group"
-                >
-                  <Mail className="w-5 h-5 mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform" />
-                  <span className="break-all">musharrafak06@gmail.com</span>
+                <a href="#services" className="hover:text-[#00a992] transition">
+                  Services
                 </a>
               </li>
-              <li className="flex items-start space-x-3 text-slate-400">
-                <MapPin className="w-5 h-5 mt-0.5 flex-shrink-0" />
-                <span>Serving 50+ cities across India</span>
+
+              <li>
+                <a href="#how-it-works" className="hover:text-[#00a992] transition">
+                  How It Works
+                </a>
               </li>
+
+              <li>
+                <a href="#testimonials" className="hover:text-[#00a992] transition">
+                  Testimonials
+                </a>
+              </li>
+
+              <li>
+                <a href="#faq" className="hover:text-[#00a992] transition">
+                  FAQ
+                </a>
+              </li>
+
             </ul>
-          </motion.div>
+          </div>
+
+          {/* SERVICES */}
+          <div>
+            <h3 className="text-xl font-semibold mb-5">
+              Services
+            </h3>
+
+            <ul className="space-y-3 text-slate-400">
+
+              <li>Home Tuition</li>
+              <li>Online Classes</li>
+              <li>NEET Coaching</li>
+              <li>JEE Coaching</li>
+              <li>Coding Classes</li>
+              <li>Language Training</li>
+
+            </ul>
+          </div>
+
+          {/* CONTACT */}
+          <div>
+            <h3 className="text-xl font-semibold mb-5">
+              Contact Us
+            </h3>
+
+            <div className="space-y-5 text-slate-400">
+
+              <div className="flex items-start gap-3">
+                <Phone className="w-5 h-5 text-[#00a992] mt-1" />
+
+                <div>
+                  <p>+91 7483034168</p>
+                  <p>+91 9773980489</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <Mail className="w-5 h-5 text-[#00a992] mt-1" />
+
+                <p>mitutoraeducation@gmail.com</p>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <MapPin className="w-5 h-5 text-[#00a992] mt-1" />
+
+                <p>
+                  Bengaluru, Karnataka, India
+                </p>
+              </div>
+
+            </div>
+          </div>
+
         </div>
 
-        {/* Bottom Bar */}
+        {/* POLICY LINKS */}
+        <div className="flex flex-wrap items-center justify-center gap-6 mt-8">
+
+          {/* PRIVACY POLICY */}
+          <a
+            href="/pdfs/privacy-policy.pdf#toolbar=0"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-slate-400 hover:text-[#00a992] transition-all duration-300 text-sm"
+          >
+            Privacy Policy
+          </a>
+
+          {/* TERMS OF SERVICE */}
+          <a
+            href="/pdfs/terms-and-conditions.pdf#toolbar=0"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-slate-400 hover:text-[#00a992] transition-all duration-300 text-sm"
+          >
+            Terms of Service
+          </a>
+
+          {/* REFUND POLICY */}
+          <a
+            href="/pdfs/refund-policy.pdf#toolbar=0"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-slate-400 hover:text-[#00a992] transition-all duration-300 text-sm"
+          >
+            Refund Policy
+          </a>
+
+        </div>
+
+        {/* COPYRIGHT */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="pt-8 border-t border-white/10"
+          transition={{ duration: 0.8 }}
+          className="border-t border-slate-800 mt-8 pt-6 text-center"
         >
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-slate-400 text-sm text-center md:text-left">
-              © {new Date().getFullYear()} Mi Tutora. All rights reserved.
-            </p>
-            <div className="flex flex-wrap justify-center gap-6 text-sm">
-              <button className="text-slate-400 hover:text-emerald-400 transition-colors">
-                Privacy Policy
-              </button>
-              <button className="text-slate-400 hover:text-emerald-400 transition-colors">
-                Terms of Service
-              </button>
-              <button className="text-slate-400 hover:text-emerald-400 transition-colors">
-                Refund Policy
-              </button>
-            </div>
-          </div>
+          <p className="text-slate-500 text-sm">
+            © {new Date().getFullYear()} Mi Tutora. All rights reserved.
+          </p>
         </motion.div>
+
       </div>
     </footer>
   );

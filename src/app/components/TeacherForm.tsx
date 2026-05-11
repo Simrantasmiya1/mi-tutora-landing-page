@@ -1,266 +1,488 @@
 import { useState } from 'react';
 
 export default function TeacherForm() {
-
   const [formData, setFormData] = useState({
     fullName: '',
     gender: '',
-    phoneNumber: '',
-    whatsappNumber: '',
+    phone: '',
+    whatsapp: '',
     email: '',
     address: '',
     qualification: '',
     experience: '',
-    occupation: '',
     subjects: '',
-    classes: '',
-    board: '',
-    teachingMode: '',
     teachingApproach: '',
     currentStudents: '',
     schoolNames: '',
-    preferredLocations: '',
-    travelDistance: '',
-    expectedFees: '',
+    preferredLocation: '',
+    travelKm: '',
+    feeRange: '',
+    mode: '',
   });
 
   const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement
-    >
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
-
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
 
     const message = `
-🎓 *NEW TUTOR APPLICATION*
+🎓 NEW TEACHER APPLICATION
 
-👨‍🏫 *Full Name:* ${formData.fullName}
+👤 Full Name: ${formData.fullName}
+🚻 Gender: ${formData.gender}
+📞 Phone: ${formData.phone}
+💬 WhatsApp: ${formData.whatsapp}
+📧 Email: ${formData.email}
 
-⚧ *Gender:* ${formData.gender}
+🏠 Address:
+${formData.address}
 
-📞 *Phone Number:* ${formData.phoneNumber}
+🎓 Qualification:
+${formData.qualification}
 
-💬 *WhatsApp Number:* ${formData.whatsappNumber}
+📚 Experience:
+${formData.experience}
 
-📧 *Email:* ${formData.email}
+📖 Subjects:
+${formData.subjects}
 
-🏠 *Residential Address:* ${formData.address}
+🌐 Preferred Mode:
+${formData.mode}
 
-🎓 *Highest Qualification:* ${formData.qualification}
+📝 Teaching Approach:
+${formData.teachingApproach}
 
-📚 *Teaching Experience:* ${formData.experience}
+👨‍🎓 Current Students:
+${formData.currentStudents}
 
-💼 *Current Occupation:* ${formData.occupation}
+🏫 School Names:
+${formData.schoolNames}
 
-📖 *Subjects You Teach:* ${formData.subjects}
+📍 Preferred Locations:
+${formData.preferredLocation}
 
-🏫 *Classes You Teach:* ${formData.classes}
+🚗 Travel KM:
+${formData.travelKm}
 
-📋 *Preferred Teaching Board:* ${formData.board}
-
-💻 *Teaching Mode:* ${formData.teachingMode}
-
-🧠 *Teaching Approach:* ${formData.teachingApproach}
-
-👨‍🎓 *Current Students:* ${formData.currentStudents}
-
-🏫 *School Names:* ${formData.schoolNames}
-
-📍 *Preferred Locations:* ${formData.preferredLocations}
-
-🚗 *Travel Distance:* ${formData.travelDistance}
-
-💰 *Expected Monthly Fee:* ${formData.expectedFees}
-
-━━━━━━━━━━━━━━━
-Thank You
-Mi Tutora Home Tuition
+💰 Expected Fee:
+${formData.feeRange}
 `;
 
-    const whatsappURL =
-      `https://wa.me/917483034168?text=${encodeURIComponent(message)}`;
-
-    window.open(whatsappURL, '_blank');
+    window.open(
+      `https://wa.me/917483034168?text=${encodeURIComponent(message)}`,
+      '_blank'
+    );
   };
 
   return (
+    <div className="bg-white rounded-2xl p-6 md:p-10 shadow-2xl w-full max-w-4xl mx-auto max-h-[90vh] overflow-y-auto">
 
-    <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-10">
-
-      <h2 className="text-4xl font-bold text-center text-slate-900 mb-10">
+      <h1 className="text-4xl font-bold mb-10 text-black">
         Teacher Information Form
-      </h2>
+      </h1>
 
-      <div className="space-y-5">
+      <form onSubmit={handleSubmit} className="space-y-8">
 
-        <input
-          type="text"
-          name="fullName"
-          placeholder="Full Name"
-          onChange={handleChange}
-          className="w-full border border-gray-300 rounded-xl p-4"
-        />
+        {/* FULL NAME */}
+        <div>
+          <label className="font-semibold block mb-2">
+            Full Name
+          </label>
 
-        <input
-          type="text"
-          name="gender"
-          placeholder="Gender"
-          onChange={handleChange}
-          className="w-full border border-gray-300 rounded-xl p-4"
-        />
+          <input
+            type="text"
+            name="fullName"
+            placeholder="John Doe"
+            onChange={handleChange}
+            className="w-full border rounded-lg p-3"
+          />
+        </div>
 
-        <input
-          type="text"
-          name="phoneNumber"
-          placeholder="Phone Number"
-          onChange={handleChange}
-          className="w-full border border-gray-300 rounded-xl p-4"
-        />
+        {/* GENDER */}
+        <div>
+          <label className="font-semibold block mb-3">
+            Gender
+          </label>
 
-        <input
-          type="text"
-          name="whatsappNumber"
-          placeholder="WhatsApp Number"
-          onChange={handleChange}
-          className="w-full border border-gray-300 rounded-xl p-4"
-        />
+          <div className="space-y-2">
+            {['Female', 'Male', 'Other'].map((item) => (
+              <label
+                key={item}
+                className="flex items-center gap-2"
+              >
+                <input
+                  type="radio"
+                  name="gender"
+                  value={item}
+                  onChange={handleChange}
+                />
 
-        <input
-          type="email"
-          name="email"
-          placeholder="Email ID"
-          onChange={handleChange}
-          className="w-full border border-gray-300 rounded-xl p-4"
-        />
+                <span>{item}</span>
+              </label>
+            ))}
+          </div>
+        </div>
 
-        <textarea
-          name="address"
-          placeholder="Residential Address"
-          rows={3}
-          onChange={handleChange}
-          className="w-full border border-gray-300 rounded-xl p-4"
-        />
+        {/* PHONE */}
+        <div>
+          <label className="font-semibold block mb-2">
+            Phone Number
+          </label>
 
-        <input
-          type="text"
-          name="qualification"
-          placeholder="Highest Qualification"
-          onChange={handleChange}
-          className="w-full border border-gray-300 rounded-xl p-4"
-        />
+          <input
+            type="text"
+            name="phone"
+            onChange={handleChange}
+            className="w-full border rounded-lg p-3"
+          />
+        </div>
 
-        <input
-          type="text"
-          name="experience"
-          placeholder="Total Teaching Experience (Years)"
-          onChange={handleChange}
-          className="w-full border border-gray-300 rounded-xl p-4"
-        />
+        {/* WHATSAPP */}
+        <div>
+          <label className="font-semibold block mb-2">
+            Whatsapp No.
+          </label>
 
-        <input
-          type="text"
-          name="occupation"
-          placeholder="Current Occupation"
-          onChange={handleChange}
-          className="w-full border border-gray-300 rounded-xl p-4"
-        />
+          <input
+            type="text"
+            name="whatsapp"
+            onChange={handleChange}
+            className="w-full border rounded-lg p-3"
+          />
+        </div>
 
-        <input
-          type="text"
-          name="subjects"
-          placeholder="Subjects You Teach"
-          onChange={handleChange}
-          className="w-full border border-gray-300 rounded-xl p-4"
-        />
+        {/* EMAIL */}
+        <div>
+          <label className="font-semibold block mb-2">
+            Email_Id
+          </label>
 
-        <input
-          type="text"
-          name="classes"
-          placeholder="Classes You Teach"
-          onChange={handleChange}
-          className="w-full border border-gray-300 rounded-xl p-4"
-        />
+          <input
+            type="email"
+            name="email"
+            onChange={handleChange}
+            className="w-full border rounded-lg p-3"
+          />
+        </div>
 
-        <input
-          type="text"
-          name="board"
-          placeholder="Preferred Teaching Board"
-          onChange={handleChange}
-          className="w-full border border-gray-300 rounded-xl p-4"
-        />
+        {/* ADDRESS */}
+        <div>
+          <label className="font-semibold block mb-2">
+            Residential Address *
+          </label>
 
-        <input
-          type="text"
-          name="teachingMode"
-          placeholder="Teaching Mode (Online / Offline / Both)"
-          onChange={handleChange}
-          className="w-full border border-gray-300 rounded-xl p-4"
-        />
+          <textarea
+            rows={4}
+            name="address"
+            onChange={handleChange}
+            className="w-full border rounded-lg p-3"
+          />
+        </div>
 
-        <textarea
-          name="teachingApproach"
-          placeholder="Brief Description of Your Teaching Approach"
-          rows={3}
-          onChange={handleChange}
-          className="w-full border border-gray-300 rounded-xl p-4"
-        />
+        {/* FILE */}
+        <div>
+          <label className="font-semibold block mb-2">
+            Your resume/CV (if available)
+          </label>
 
-        <input
-          type="text"
-          name="currentStudents"
-          placeholder="How many students are you currently teaching?"
-          onChange={handleChange}
-          className="w-full border border-gray-300 rounded-xl p-4"
-        />
+          <input
+            type="file"
+            className="w-full border rounded-lg p-3"
+          />
+        </div>
 
-        <input
-          type="text"
-          name="schoolNames"
-          placeholder="Mention School Names of Current Students"
-          onChange={handleChange}
-          className="w-full border border-gray-300 rounded-xl p-4"
-        />
+        {/* QUALIFICATION */}
+        <div>
+          <label className="font-semibold block mb-2">
+            Highest Qualification *
+          </label>
 
-        <input
-          type="text"
-          name="preferredLocations"
-          placeholder="Preferred Locations"
-          onChange={handleChange}
-          className="w-full border border-gray-300 rounded-xl p-4"
-        />
+          <input
+            type="text"
+            name="qualification"
+            onChange={handleChange}
+            className="w-full border rounded-lg p-3"
+          />
+        </div>
 
-        <input
-          type="text"
-          name="travelDistance"
-          placeholder="Willing To Travel Within KM"
-          onChange={handleChange}
-          className="w-full border border-gray-300 rounded-xl p-4"
-        />
+        {/* EXPERIENCE */}
+        <div>
+          <label className="font-semibold block mb-2">
+            Total Teaching Experience (in Years)
+          </label>
 
-        <input
-          type="text"
-          name="expectedFees"
-          placeholder="Expected Monthly Fee Range"
-          onChange={handleChange}
-          className="w-full border border-gray-300 rounded-xl p-4"
-        />
+          <input
+            type="text"
+            name="experience"
+            onChange={handleChange}
+            className="w-full border rounded-lg p-3"
+          />
+        </div>
 
+        {/* OCCUPATION */}
+        <div>
+          <label className="font-semibold block mb-3">
+            Current Occupation
+          </label>
+
+          <div className="space-y-3">
+            {[
+              'Freelancer',
+              'Full-Time Teacher',
+              'Others',
+              'Student',
+            ].map((item) => (
+              <label
+                key={item}
+                className="flex items-center gap-3 border rounded-lg px-4 py-3"
+              >
+                <input type="checkbox" />
+                <span>{item}</span>
+              </label>
+            ))}
+          </div>
+        </div>
+
+        {/* SUBJECTS */}
+        <div>
+          <label className="font-semibold block mb-2">
+            Subjects you Teach *
+          </label>
+
+          <input
+            type="text"
+            name="subjects"
+            onChange={handleChange}
+            className="w-full border rounded-lg p-3"
+          />
+        </div>
+
+        {/* CLASSES */}
+        <div>
+          <label className="font-semibold block mb-3">
+            Classes you Teach *
+          </label>
+
+          <div className="space-y-2">
+            {[
+              'KG - 5',
+              '6 - 8',
+              '9 - 10',
+              'JEE / NEET',
+              '11 - 12',
+              'Others',
+            ].map((item) => (
+              <label
+                key={item}
+                className="flex items-center gap-2"
+              >
+                <input type="checkbox" />
+                <span>{item}</span>
+              </label>
+            ))}
+          </div>
+        </div>
+
+        {/* BOARD */}
+        <div>
+          <label className="font-semibold block mb-3">
+            Preferred Teaching Board *
+          </label>
+
+          <div className="space-y-2">
+            {[
+              'ICSE',
+              'CBSE',
+              'Others',
+              'IB / IGCSE / International',
+            ].map((item) => (
+              <label
+                key={item}
+                className="flex items-center gap-2"
+              >
+                <input type="checkbox" />
+                <span>{item}</span>
+              </label>
+            ))}
+          </div>
+        </div>
+
+        {/* TECH LANGUAGES */}
+        <div>
+          <label className="font-semibold block mb-3">
+            Technical Languages you Teach
+          </label>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {[
+              'Python',
+              'Java',
+              'AI & ML',
+              'HTML',
+              'Data Analytics',
+              'Gen AI',
+              'Agentic AI',
+            ].map((item) => (
+              <label
+                key={item}
+                className="border rounded-lg px-3 py-3 flex items-center gap-2"
+              >
+                <input type="checkbox" />
+                <span>{item}</span>
+              </label>
+            ))}
+          </div>
+        </div>
+
+        {/* LANGUAGES */}
+        <div>
+          <label className="font-semibold block mb-3">
+            Languages You Teach
+          </label>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {[
+              'Arabic',
+              'English',
+              'German',
+              'Japanese',
+            ].map((item) => (
+              <label
+                key={item}
+                className="border rounded-lg px-3 py-3 flex items-center gap-2"
+              >
+                <input type="checkbox" />
+                <span>{item}</span>
+              </label>
+            ))}
+          </div>
+        </div>
+
+        {/* MODE */}
+        <div>
+          <label className="font-semibold block mb-3">
+            Preferred Mode
+          </label>
+
+          <div className="grid grid-cols-2 gap-4">
+            {['Online', 'Offline'].map((item) => (
+              <label
+                key={item}
+                className="border rounded-lg px-4 py-3 flex items-center gap-3"
+              >
+                <input
+                  type="radio"
+                  name="mode"
+                  value={item}
+                  onChange={handleChange}
+                />
+
+                <span>{item}</span>
+              </label>
+            ))}
+          </div>
+        </div>
+
+        {/* APPROACH */}
+        <div>
+          <label className="font-semibold block mb-2">
+            Brief Description of Your Teaching Approach *
+          </label>
+
+          <textarea
+            rows={5}
+            name="teachingApproach"
+            onChange={handleChange}
+            className="w-full border rounded-lg p-3"
+          />
+        </div>
+
+        {/* CURRENT STUDENTS */}
+        <div>
+          <label className="font-semibold block mb-2">
+            How many students are you currently teaching?
+          </label>
+
+          <input
+            type="text"
+            name="currentStudents"
+            onChange={handleChange}
+            className="w-full border rounded-lg p-3"
+          />
+        </div>
+
+        {/* SCHOOL */}
+        <div>
+          <label className="font-semibold block mb-2">
+            Mention school names of your current students (if any)
+          </label>
+
+          <input
+            type="text"
+            name="schoolNames"
+            onChange={handleChange}
+            className="w-full border rounded-lg p-3"
+          />
+        </div>
+
+        {/* LOCATION */}
+        <div>
+          <label className="font-semibold block mb-2">
+            Preferred Locations (Mention Areas name / Pin code) *
+          </label>
+
+          <input
+            type="text"
+            name="preferredLocation"
+            onChange={handleChange}
+            className="w-full border rounded-lg p-3"
+          />
+        </div>
+
+        {/* TRAVEL */}
+        <div>
+          <label className="font-semibold block mb-2">
+            Willing to travel within km
+          </label>
+
+          <input
+            type="text"
+            name="travelKm"
+            onChange={handleChange}
+            className="w-full border rounded-lg p-3"
+          />
+        </div>
+
+        {/* FEES */}
+        <div>
+          <label className="font-semibold block mb-2">
+            Expected Monthly Fee Range (Per student) *
+          </label>
+
+          <input
+            type="text"
+            name="feeRange"
+            onChange={handleChange}
+            className="w-full border rounded-lg p-3"
+          />
+        </div>
+
+        {/* BUTTON */}
         <button
-          onClick={handleSubmit}
-          className="w-full bg-[#00a992] hover:bg-[#008f7d] transition-all text-white py-4 rounded-xl text-lg font-semibold shadow-lg"
+          type="submit"
+          className="w-full bg-black text-white py-4 rounded-lg font-semibold text-lg"
         >
-          Submit & Open WhatsApp
+          Submit →
         </button>
 
-      </div>
+      </form>
     </div>
   );
 }
