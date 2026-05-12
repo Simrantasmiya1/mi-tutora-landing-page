@@ -8,7 +8,7 @@ import {
   Facebook,
 } from 'lucide-react';
 
-import logo from '../../imports/image.png';
+import logo from '../../imports/logo-transparent.png';
 
 export function Footer() {
 
