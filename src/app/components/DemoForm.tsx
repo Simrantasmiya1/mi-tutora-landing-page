@@ -1,104 +1,116 @@
+// src/app/components/DemoForm.tsx
+
 import { useState } from 'react';
 
-export default function DemoForm() {
-  const [formData, setFormData] = useState({
-    fullName: '',
-    gender: '',
-    phone: '',
-    whatsapp: '',
-    email: '',
-    address: '',
-    studentType: '',
-    classGrade: '',
-    parentName: '',
-    demoMode: '',
-    preferredDate: '',
-    preferredTime: '',
-    board: '',
-    subjects: '',
-    classMode: '',
-    studyHours: '',
-    studyDays: '',
-    learningGoal: '',
-    heardAbout: '',
-    requirements: '',
-  });
+interface Props {
+  category?: string;
+}
+
+export default function DemoForm({
+  category,
+}: Props) {
+
+  const [formData, setFormData] =
+    useState({
+      fullName: '',
+      gender: '',
+      phone: '',
+      whatsapp: '',
+      email: '',
+      address: '',
+      studentType: '',
+      classGrade: '',
+      parentName: '',
+      demoMode: '',
+      board: '',
+      subjects: '',
+      classMode: '',
+      hours: '',
+      days: '',
+      goal: '',
+      source: '',
+      requirements: '',
+    });
 
   const handleChange = (
     e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+      HTMLInputElement |
+      HTMLTextAreaElement |
+      HTMLSelectElement
     >
   ) => {
+
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
+
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (
+    e: React.FormEvent
+  ) => {
+
     e.preventDefault();
 
     const message = `
 🎓 NEW FREE DEMO REQUEST
 
-👤 Student Name:
+📚 Category:
+${category}
+
+👤 Name:
 ${formData.fullName}
 
 🚻 Gender:
 ${formData.gender}
 
-📞 Phone Number:
+📞 Phone:
 ${formData.phone}
 
-💬 WhatsApp Number:
+💬 WhatsApp:
 ${formData.whatsapp}
 
 📧 Email:
 ${formData.email}
 
-🏠 Residential Address:
+🏠 Address:
 ${formData.address}
 
-👨‍🎓 I Am A:
+👨‍🎓 Student Type:
 ${formData.studentType}
 
-🏫 Class / Grade:
+🏫 Class:
 ${formData.classGrade}
 
-👨 Parent / Guardian:
+👪 Parent Name:
 ${formData.parentName}
 
-🌐 Preferred Demo Mode:
+🌐 Demo Mode:
 ${formData.demoMode}
-
-📅 Preferred Date:
-${formData.preferredDate}
-
-⏰ Preferred Time:
-${formData.preferredTime}
 
 📚 Board:
 ${formData.board}
 
-📖 Subjects Interested:
+📖 Subjects:
 ${formData.subjects}
 
-💻 Preferred Class Mode:
+💻 Class Mode:
 ${formData.classMode}
 
-🕒 Study Hours Per Day:
-${formData.studyHours}
+⏰ Hours:
+${formData.hours}
 
-📆 Study Days Per Week:
-${formData.studyDays}
+📅 Days:
+${formData.days}
 
-🎯 Learning Goal:
-${formData.learningGoal}
+🎯 Goal:
+${formData.goal}
 
-📢 Heard About Us:
-${formData.heardAbout}
+📢 Source:
+${formData.source}
 
-📝 Special Requirements:
+📝 Requirements:
 ${formData.requirements}
 `;
 
@@ -109,437 +121,600 @@ ${formData.requirements}
   };
 
   return (
-    <div className="bg-white rounded-2xl p-6 md:p-10 shadow-2xl w-full max-w-6xl mx-auto max-h-[90vh] overflow-y-auto">
 
-      <h1 className="text-4xl font-bold mb-3 text-black">
-        Student Details Form
-      </h1>
+    <div className="bg-white rounded-3xl p-8 md:p-10 shadow-2xl max-w-6xl mx-auto">
 
-      <p className="text-gray-500 mb-10">
+      {/* TITLE */}
+      <h2 className="text-5xl font-bold text-black mb-4">
+        🎓 Student Details Form
+      </h2>
+
+      <p className="text-slate-500 mb-10 text-lg">
         Fill in your details to book your free demo session.
       </p>
 
-      <form onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-6">
+      <form
+        onSubmit={handleSubmit}
+        className="space-y-8"
+      >
 
-        {/* FULL NAME */}
+        {/* CATEGORY */}
         <div>
-          <label className="font-semibold block mb-2">
-            Full Name *
+          <label className="block text-sm font-semibold mb-2">
+            📚 Selected Category
           </label>
 
           <input
             type="text"
-            name="fullName"
-            placeholder="Enter your full name"
-            onChange={handleChange}
-            className="w-full border rounded-lg p-3"
+            value={category || ''}
+            readOnly
+            className="w-full border border-slate-300 rounded-xl px-4 py-4 bg-slate-100"
           />
         </div>
 
-        {/* GENDER */}
-        <div>
-          <label className="font-semibold block mb-2">
-            Gender *
-          </label>
+        {/* NAME + GENDER */}
+        <div className="grid md:grid-cols-2 gap-6">
 
-          <div className="flex gap-6 mt-4">
-            {['Female', 'Male', 'Other'].map((item) => (
-              <label
-                key={item}
-                className="flex items-center gap-2"
-              >
-                <input
-                  type="radio"
-                  name="gender"
-                  value={item}
-                  onChange={handleChange}
-                />
-                <span>{item}</span>
-              </label>
-            ))}
+          {/* NAME */}
+          <div>
+            <label className="block text-sm font-semibold mb-2">
+              👤 Full Name *
+            </label>
+
+            <input
+              type="text"
+              name="fullName"
+              placeholder="Enter your full name"
+              onChange={handleChange}
+              className="w-full border border-slate-300 rounded-xl px-4 py-4"
+            />
           </div>
+
+          {/* GENDER */}
+          <div>
+            <label className="block text-sm font-semibold mb-3">
+              🚻 Gender *
+            </label>
+
+            <div className="flex gap-6 pt-3">
+
+              {[
+                'Female',
+                'Male',
+                'Other',
+              ].map((item) => (
+
+                <label
+                  key={item}
+                  className="flex items-center gap-2"
+                >
+
+                  <input
+                    type="radio"
+                    name="gender"
+                    value={item}
+                    onChange={handleChange}
+                  />
+
+                  {item}
+
+                </label>
+
+              ))}
+
+            </div>
+          </div>
+
         </div>
 
         {/* PHONE */}
-        <div>
-          <label className="font-semibold block mb-2">
-            Phone Number *
-          </label>
+        <div className="grid md:grid-cols-2 gap-6">
 
-          <input
-            type="text"
-            name="phone"
-            placeholder="Enter phone number"
-            onChange={handleChange}
-            className="w-full border rounded-lg p-3"
-          />
+          <div>
+            <label className="block text-sm font-semibold mb-2">
+              📞 Phone Number *
+            </label>
+
+            <input
+              type="tel"
+              name="phone"
+              placeholder="Enter phone number"
+              onChange={handleChange}
+              className="w-full border border-slate-300 rounded-xl px-4 py-4"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-semibold mb-2">
+              💬 WhatsApp No. *
+            </label>
+
+            <input
+              type="tel"
+              name="whatsapp"
+              placeholder="Enter WhatsApp number"
+              onChange={handleChange}
+              className="w-full border border-slate-300 rounded-xl px-4 py-4"
+            />
+          </div>
+
         </div>
 
-        {/* WHATSAPP */}
-        <div>
-          <label className="font-semibold block mb-2">
-            WhatsApp No. *
-          </label>
+        {/* EMAIL + ADDRESS */}
+        <div className="grid md:grid-cols-2 gap-6">
 
-          <input
-            type="text"
-            name="whatsapp"
-            placeholder="Enter WhatsApp number"
-            onChange={handleChange}
-            className="w-full border rounded-lg p-3"
-          />
+          <div>
+            <label className="block text-sm font-semibold mb-2">
+              📧 Email ID *
+            </label>
+
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter email"
+              onChange={handleChange}
+              className="w-full border border-slate-300 rounded-xl px-4 py-4"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-semibold mb-2">
+              🏠 Residential Address *
+            </label>
+
+            <textarea
+              rows={4}
+              name="address"
+              placeholder="Enter address"
+              onChange={handleChange}
+              className="w-full border border-slate-300 rounded-xl px-4 py-4"
+            />
+          </div>
+
         </div>
 
-        {/* EMAIL */}
-        <div>
-          <label className="font-semibold block mb-2">
-            Email ID *
-          </label>
+        {/* SCHOOL CATEGORY */}
+        {category === 'school' && (
 
-          <input
-            type="email"
-            name="email"
-            placeholder="Enter email address"
-            onChange={handleChange}
-            className="w-full border rounded-lg p-3"
-          />
-        </div>
+          <>
 
-        {/* ADDRESS */}
-        <div>
-          <label className="font-semibold block mb-2">
-            Residential Address *
-          </label>
+            {/* SCHOOL DETAILS */}
+            <div className="grid md:grid-cols-2 gap-6">
 
-          <textarea
-            rows={4}
-            name="address"
-            placeholder="Enter full address"
-            onChange={handleChange}
-            className="w-full border rounded-lg p-3"
-          />
-        </div>
+              <div>
+                <label className="block text-sm font-semibold mb-2">
+                  👨‍🎓 I am a *
+                </label>
 
-        {/* I AM A */}
-        <div>
-          <label className="font-semibold block mb-2">
-            I am a *
-          </label>
+                <select
+                  name="studentType"
+                  onChange={handleChange}
+                  className="w-full border border-slate-300 rounded-xl px-4 py-4"
+                >
+                  <option>
+                    Select option
+                  </option>
 
-          <select
-            name="studentType"
-            onChange={handleChange}
-            className="w-full border rounded-lg p-3"
-          >
-            <option>Select an option</option>
-            <option>School Student</option>
-            <option>College Student</option>
-            <option>Working Professional</option>
-          </select>
-        </div>
+                  <option>
+                    School Student
+                  </option>
 
-        {/* CLASS */}
-        <div>
-          <label className="font-semibold block mb-2">
-            Class / Grade *
-          </label>
+                  <option>
+                    College Student
+                  </option>
 
-          <select
-            name="classGrade"
-            onChange={handleChange}
-            className="w-full border rounded-lg p-3"
-          >
-            <option>Select class</option>
-            <option>KG - 5</option>
-            <option>6 - 8</option>
-            <option>9 - 10</option>
-            <option>11 - 12</option>
-            <option>JEE / NEET</option>
-            <option>Degree</option>
-          </select>
-        </div>
+                </select>
+              </div>
 
-        {/* PARENT */}
-        <div>
-          <label className="font-semibold block mb-2">
-            Parent / Guardian Name *
-          </label>
+              <div>
+                <label className="block text-sm font-semibold mb-2">
+                  🏫 Class / Grade *
+                </label>
 
-          <input
-            type="text"
-            name="parentName"
-            placeholder="Enter parent name"
-            onChange={handleChange}
-            className="w-full border rounded-lg p-3"
-          />
-        </div>
+                <select
+                  name="classGrade"
+                  onChange={handleChange}
+                  className="w-full border border-slate-300 rounded-xl px-4 py-4"
+                >
 
-        {/* DEMO MODE */}
-        <div>
-          <label className="font-semibold block mb-2">
-            Preferred Mode of Demo *
-          </label>
+                  <option>
+                    Select class
+                  </option>
 
-          <div className="grid grid-cols-2 gap-4">
-            {['Online', 'Offline'].map((item) => (
-              <label
-                key={item}
-                className="border rounded-lg p-4 flex items-center gap-3"
-              >
+                  <option>
+                    LKG
+                  </option>
+
+                  <option>
+                    UKG
+                  </option>
+
+                  <option>
+                    1st Standard
+                  </option>
+
+                  <option>
+                    2nd Standard
+                  </option>
+
+                  <option>
+                    3rd Standard
+                  </option>
+
+                  <option>
+                    4th Standard
+                  </option>
+
+                  <option>
+                    5th Standard
+                  </option>
+
+                  <option>
+                    6th Standard
+                  </option>
+
+                  <option>
+                    7th Standard
+                  </option>
+
+                  <option>
+                    8th Standard
+                  </option>
+
+                  <option>
+                    9th Standard
+                  </option>
+
+                  <option>
+                    10th Standard
+                  </option>
+
+                  <option>
+                    1st PU
+                  </option>
+
+                  <option>
+                    2nd PU
+                  </option>
+
+                  <option>
+                    KCET Coaching
+                  </option>
+
+                  <option>
+                    NEET Coaching
+                  </option>
+
+                  <option>
+                    JEE Coaching
+                  </option>
+
+                </select>
+              </div>
+
+            </div>
+
+            {/* BOARD */}
+            <div className="grid md:grid-cols-2 gap-6">
+
+              <div>
+                <label className="block text-sm font-semibold mb-2">
+                  📚 Board *
+                </label>
+
+                <select
+                  name="board"
+                  onChange={handleChange}
+                  className="w-full border border-slate-300 rounded-xl px-4 py-4"
+                >
+
+                  <option>
+                    Select Board
+                  </option>
+
+                  <option>
+                    CBSE
+                  </option>
+
+                  <option>
+                    ICSE
+                  </option>
+
+                  <option>
+                    State Board
+                  </option>
+
+                  <option>
+                    IB
+                  </option>
+
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-sm font-semibold mb-2">
+                  📖 Subjects *
+                </label>
+
+                <input
+                  type="text"
+                  name="subjects"
+                  placeholder="Maths, Science..."
+                  onChange={handleChange}
+                  className="w-full border border-slate-300 rounded-xl px-4 py-4"
+                />
+              </div>
+
+            </div>
+
+          </>
+        )}
+
+        {/* PROGRAMMING CATEGORY */}
+        {category === 'programming' && (
+
+          <>
+
+            <div>
+              <label className="block text-lg font-bold mb-4">
+                💻 Technical Languages you want to learn
+              </label>
+
+              <div className="grid md:grid-cols-4 gap-4">
+
+                {[
+                  'Python',
+                  'Java',
+                  'AI & ML',
+                  'HTML',
+                  'Data Analytics',
+                  'Gen AI',
+                  'Agentic AI',
+                ].map((item) => (
+
+                  <label
+                    key={item}
+                    className="border border-slate-300 rounded-xl px-4 py-4 flex items-center gap-3 hover:border-purple-500 transition-all"
+                  >
+
+                    <input type="checkbox" />
+
+                    {item}
+
+                  </label>
+
+                ))}
+
+              </div>
+            </div>
+
+          </>
+        )}
+
+        {/* LANGUAGE CATEGORY */}
+        {category === 'languages' && (
+
+          <>
+
+            <div>
+              <label className="block text-lg font-bold mb-4">
+                🌍 Languages you want to learn
+              </label>
+
+              <div className="grid md:grid-cols-4 gap-4">
+
+                {[
+                  'Arabic',
+                  'English',
+                  'German',
+                  'Japanese',
+                ].map((item) => (
+
+                  <label
+                    key={item}
+                    className="border border-slate-300 rounded-xl px-4 py-4 flex items-center gap-3 hover:border-purple-500 transition-all"
+                  >
+
+                    <input type="checkbox" />
+
+                    {item}
+
+                  </label>
+
+                ))}
+
+              </div>
+            </div>
+
+          </>
+        )}
+
+        {/* MODE */}
+        <div className="grid md:grid-cols-2 gap-6">
+
+          <div>
+            <label className="block text-sm font-semibold mb-3">
+              🌐 Preferred Mode *
+            </label>
+
+            {(category === 'programming' ||
+              category === 'languages') ? (
+
+              <div className="border-2 border-emerald-500 bg-emerald-50 rounded-xl px-4 py-4 flex items-center gap-3">
+
                 <input
                   type="radio"
                   name="demoMode"
-                  value={item}
-                  onChange={handleChange}
+                  value="Online"
+                  checked
+                  readOnly
                 />
-                <span>{item}</span>
-              </label>
-            ))}
+
+                <span className="font-semibold text-emerald-700">
+                  Online Only
+                </span>
+
+              </div>
+
+            ) : (
+
+              <div className="grid grid-cols-2 gap-4">
+
+                {[
+                  'Online',
+                  'Offline',
+                ].map((item) => (
+
+                  <label
+                    key={item}
+                    className="border border-slate-300 rounded-xl px-4 py-4 flex items-center gap-3"
+                  >
+
+                    <input
+                      type="radio"
+                      name="demoMode"
+                      value={item}
+                      onChange={handleChange}
+                    />
+
+                    {item}
+
+                  </label>
+
+                ))}
+
+              </div>
+
+            )}
+
           </div>
-        </div>
 
-        {/* DATE */}
-        <div>
-          <label className="font-semibold block mb-2">
-            Preferred Date *
-          </label>
+          <div>
+            <label className="block text-sm font-semibold mb-2">
+              👪 Parent / Guardian Name
+            </label>
 
-          <input
-            type="date"
-            name="preferredDate"
-            onChange={handleChange}
-            className="w-full border rounded-lg p-3"
-          />
-        </div>
-
-        {/* TIME */}
-        <div>
-          <label className="font-semibold block mb-2">
-            Preferred Time *
-          </label>
-
-          <input
-            type="time"
-            name="preferredTime"
-            onChange={handleChange}
-            className="w-full border rounded-lg p-3"
-          />
-        </div>
-
-        {/* BOARD */}
-        <div>
-          <label className="font-semibold block mb-2">
-            Board / Education System *
-          </label>
-
-          <select
-            name="board"
-            onChange={handleChange}
-            className="w-full border rounded-lg p-3"
-          >
-            <option>Select board</option>
-            <option>CBSE</option>
-            <option>ICSE</option>
-            <option>State Board</option>
-            <option>IB</option>
-            <option>IGCSE</option>
-          </select>
-        </div>
-
-        {/* SUBJECTS */}
-        <div>
-          <label className="font-semibold block mb-2">
-            Subjects you are interested in *
-          </label>
-
-          <input
-            type="text"
-            name="subjects"
-            placeholder="Math, Science, English"
-            onChange={handleChange}
-            className="w-full border rounded-lg p-3"
-          />
-        </div>
-
-        {/* CLASS MODE */}
-        <div>
-          <label className="font-semibold block mb-2">
-            Preferred Mode of Classes *
-          </label>
-
-          <div className="grid grid-cols-2 gap-4">
-            {['Online', 'Offline'].map((item) => (
-              <label
-                key={item}
-                className="border rounded-lg p-4 flex items-center gap-3"
-              >
-                <input
-                  type="radio"
-                  name="classMode"
-                  value={item}
-                  onChange={handleChange}
-                />
-                <span>{item}</span>
-              </label>
-            ))}
+            <input
+              type="text"
+              name="parentName"
+              placeholder="Parent Name"
+              onChange={handleChange}
+              className="w-full border border-slate-300 rounded-xl px-4 py-4"
+            />
           </div>
+
         </div>
 
         {/* HOURS */}
-        <div>
-          <label className="font-semibold block mb-2">
-            How many hours per day? *
-          </label>
+        <div className="grid md:grid-cols-2 gap-6">
 
-          <select
-            name="studyHours"
-            onChange={handleChange}
-            className="w-full border rounded-lg p-3"
-          >
-            <option>Select hours</option>
-            <option>1 Hour</option>
-            <option>2 Hours</option>
-            <option>3 Hours</option>
-            <option>4+ Hours</option>
-          </select>
-        </div>
+          <div>
+            <label className="block text-sm font-semibold mb-2">
+              ⏰ Hours per day
+            </label>
 
-        {/* DAYS */}
-        <div>
-          <label className="font-semibold block mb-2">
-            How many days per week? *
-          </label>
+            <select
+              name="hours"
+              onChange={handleChange}
+              className="w-full border border-slate-300 rounded-xl px-4 py-4"
+            >
 
-          <select
-            name="studyDays"
-            onChange={handleChange}
-            className="w-full border rounded-lg p-3"
-          >
-            <option>Select days</option>
-            <option>2 Days</option>
-            <option>3 Days</option>
-            <option>5 Days</option>
-            <option>Daily</option>
-          </select>
+              <option>
+                Select Hours
+              </option>
+
+              <option>
+                1 Hour
+              </option>
+
+              <option>
+                2 Hours
+              </option>
+
+              <option>
+                3 Hours
+              </option>
+
+              <option>
+                4 Hours
+              </option>
+
+            </select>
+          </div>
+
+          <div>
+            <label className="block text-sm font-semibold mb-2">
+              📅 Days per week
+            </label>
+
+            <select
+              name="days"
+              onChange={handleChange}
+              className="w-full border border-slate-300 rounded-xl px-4 py-4"
+            >
+
+              <option>
+                Select Days
+              </option>
+
+              <option>
+                2 Days
+              </option>
+
+              <option>
+                3 Days
+              </option>
+
+              <option>
+                5 Days
+              </option>
+
+              <option>
+                6 Days
+              </option>
+
+            </select>
+          </div>
+
         </div>
 
         {/* GOAL */}
         <div>
-          <label className="font-semibold block mb-2">
-            Main goal for learning? *
+          <label className="block text-sm font-semibold mb-2">
+            🎯 Learning Goal
           </label>
 
           <textarea
             rows={4}
-            name="learningGoal"
-            placeholder="Write your learning goal"
+            name="goal"
+            placeholder="Write your goal..."
             onChange={handleChange}
-            className="w-full border rounded-lg p-3"
+            className="w-full border border-slate-300 rounded-xl px-4 py-4"
           />
-        </div>
-
-        {/* HEARD */}
-        <div>
-          <label className="font-semibold block mb-2">
-            How did you hear about us?
-          </label>
-
-          <select
-            name="heardAbout"
-            onChange={handleChange}
-            className="w-full border rounded-lg p-3"
-          >
-            <option>Select option</option>
-            <option>Instagram</option>
-            <option>WhatsApp</option>
-            <option>Friend</option>
-            <option>Google</option>
-          </select>
-        </div>
-
-        {/* TECH */}
-        <div className="md:col-span-2">
-          <label className="font-semibold block mb-3">
-            Technical Languages you want to learn
-          </label>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-            {[
-              'Python',
-              'Java',
-              'AI & ML',
-              'HTML',
-              'Data Analytics',
-              'Gen AI',
-              'Agentic AI',
-            ].map((item) => (
-              <label
-                key={item}
-                className="border rounded-lg px-3 py-3 flex items-center gap-2"
-              >
-                <input type="checkbox" />
-                <span>{item}</span>
-              </label>
-            ))}
-          </div>
-        </div>
-
-        {/* LANGUAGES */}
-        <div className="md:col-span-2">
-          <label className="font-semibold block mb-3">
-            Languages you want to learn
-          </label>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-            {[
-              'Arabic',
-              'English',
-              'German',
-              'Japanese',
-            ].map((item) => (
-              <label
-                key={item}
-                className="border rounded-lg px-3 py-3 flex items-center gap-2"
-              >
-                <input type="checkbox" />
-                <span>{item}</span>
-              </label>
-            ))}
-          </div>
         </div>
 
         {/* REQUIREMENTS */}
-        <div className="md:col-span-2">
-          <label className="font-semibold block mb-2">
-            Any specific requirements or information?
+        <div>
+          <label className="block text-sm font-semibold mb-2">
+            📝 Specific Requirements
           </label>
 
           <textarea
-            rows={5}
+            rows={4}
             name="requirements"
-            placeholder="Write anything you would like us to know"
+            placeholder="Any specific requirements?"
             onChange={handleChange}
-            className="w-full border rounded-lg p-3"
+            className="w-full border border-slate-300 rounded-xl px-4 py-4"
           />
         </div>
 
-        {/* TERMS */}
-        <div className="md:col-span-2 flex items-center gap-2">
-          <input type="checkbox" required />
-          <span>
-            I agree to Terms & Conditions and Privacy Policy
-          </span>
-        </div>
-
         {/* BUTTON */}
-        <div className="md:col-span-2">
-          <button
-            type="submit"
-            className="w-full bg-purple-600 hover:bg-purple-700 text-white py-4 rounded-xl text-lg font-semibold transition"
-          >
-            Submit
-          </button>
-        </div>
+        <button
+          type="submit"
+          className="w-full bg-gradient-to-r from-purple-600 to-violet-500 hover:from-purple-700 hover:to-violet-600 text-white py-5 rounded-xl font-semibold text-lg transition-all shadow-lg"
+        >
+          🚀 Submit
+        </button>
 
       </form>
     </div>

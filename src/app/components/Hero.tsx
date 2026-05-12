@@ -1,9 +1,12 @@
+// src/app/components/Hero.tsx
+
 import { useState, useEffect } from 'react';
 
 import TeacherForm from './TeacherForm';
 import DemoForm from './DemoForm';
 
 import { motion } from 'motion/react';
+
 import {
   ArrowRight,
   Download,
@@ -16,16 +19,23 @@ import heroImage from '../../imports/hero.jpg';
 export function Hero() {
 
   /* STATES */
-  const [showForm, setShowForm] = useState(false);
+  const [showForm, setShowForm] =
+    useState(false);
 
   const [showDemoForm, setShowDemoForm] =
     useState(false);
 
-  /* OPEN FORM FROM NAVBAR */
+  const [selectedCategory, setSelectedCategory] =
+    useState('');
+
+  /* NAVBAR OPEN */
   useEffect(() => {
 
     const handleOpenForm = () => {
+
+      setSelectedCategory('');
       setShowDemoForm(true);
+
     };
 
     window.addEventListener(
@@ -34,18 +44,21 @@ export function Hero() {
     );
 
     return () => {
+
       window.removeEventListener(
         'openTeacherForm',
         handleOpenForm
       );
+
     };
 
   }, []);
 
-  /* SCROLL FUNCTION */
+  /* SCROLL */
   const scrollToSection = (id: string) => {
 
-    const element = document.getElementById(id);
+    const element =
+      document.getElementById(id);
 
     if (element) {
 
@@ -60,7 +73,7 @@ export function Hero() {
   return (
     <>
 
-      {/* HERO SECTION */}
+      {/* HERO */}
       <section
         id="hero"
         className="relative min-h-screen flex items-center overflow-hidden bg-white"
@@ -68,10 +81,10 @@ export function Hero() {
 
         <div className="w-full h-full grid lg:grid-cols-2">
 
-          {/* LEFT SIDE */}
+          {/* LEFT */}
           <div className="relative z-10 flex items-center bg-gradient-to-br from-white via-emerald-50/30 to-teal-50/20">
 
-            {/* BACKGROUND EFFECT */}
+            {/* BG */}
             <div className="absolute inset-0 overflow-hidden">
 
               <div className="absolute top-20 right-10 w-72 h-72 bg-emerald-100/40 rounded-full blur-3xl" />
@@ -82,16 +95,30 @@ export function Hero() {
 
             {/* CONTENT */}
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
+              initial={{
+                opacity: 0,
+                x: -30,
+              }}
+              animate={{
+                opacity: 1,
+                x: 0,
+              }}
+              transition={{
+                duration: 0.8,
+              }}
               className="relative z-10 w-full px-6 sm:px-12 lg:px-16 py-24 lg:py-32"
             >
 
               {/* BADGE */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{
+                  opacity: 0,
+                  y: 20,
+                }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                }}
                 transition={{
                   duration: 0.6,
                   delay: 0.2,
@@ -109,8 +136,14 @@ export function Hero() {
 
               {/* HEADING */}
               <motion.h1
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{
+                  opacity: 0,
+                  y: 30,
+                }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                }}
                 transition={{
                   duration: 0.8,
                   delay: 0.3,
@@ -126,10 +159,16 @@ export function Hero() {
 
               </motion.h1>
 
-              {/* SUBTEXT */}
+              {/* TEXT */}
               <motion.p
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{
+                  opacity: 0,
+                  y: 30,
+                }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                }}
                 transition={{
                   duration: 0.8,
                   delay: 0.4,
@@ -143,8 +182,14 @@ export function Hero() {
 
               {/* BUTTONS */}
               <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{
+                  opacity: 0,
+                  y: 30,
+                }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                }}
                 transition={{
                   duration: 0.8,
                   delay: 0.5,
@@ -152,127 +197,97 @@ export function Hero() {
                 className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-12"
               >
 
-                {/* BOOK FREE DEMO */}
+                {/* BOOK DEMO */}
                 <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() =>
-                    setShowDemoForm(true)
-                  }
+                  whileHover={{
+                    scale: 1.05,
+                  }}
+                  whileTap={{
+                    scale: 0.95,
+                  }}
+
+                  onClick={() => {
+                    setSelectedCategory('');
+                    setShowDemoForm(true);
+                  }}
+
                   className="group px-8 py-4 bg-[#00a992] text-white rounded-full font-semibold text-lg shadow-lg shadow-[#00a992]/25 hover:shadow-xl hover:shadow-[#00a992]/35 transition-all flex items-center space-x-2"
                 >
 
-                  <span>Book Free Demo</span>
+                  <span>
+                    Book Free Demo
+                  </span>
 
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
 
                 </motion.button>
 
-                {/* BECOME TUTOR */}
+                {/* TUTOR */}
                 <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() =>
-                    setShowForm(true)
-                  }
+                  whileHover={{
+                    scale: 1.05,
+                  }}
+                  whileTap={{
+                    scale: 0.95,
+                  }}
+
+                  onClick={() => {
+                    setSelectedCategory('');
+                    setShowForm(true);
+                  }}
+
                   className="px-8 py-4 bg-white text-slate-700 border-2 border-slate-200 rounded-full font-semibold text-lg hover:border-[#00a992] hover:bg-[#00a992]/5 transition-all flex items-center space-x-2 shadow-sm"
                 >
 
                   <Users className="w-5 h-5" />
 
-                  <span>Become a Tutor</span>
+                  <span>
+                    Become a Tutor
+                  </span>
 
                 </motion.button>
 
                 {/* DOWNLOAD */}
                 <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={{
+                    scale: 1.05,
+                  }}
+                  whileTap={{
+                    scale: 0.95,
+                  }}
+
                   onClick={() =>
                     scrollToSection(
                       'app-download'
                     )
                   }
+
                   className="px-6 py-3 text-slate-600 font-medium text-base hover:text-[#00a992] transition-all flex items-center space-x-2"
                 >
 
                   <Download className="w-5 h-5" />
 
-                  <span>Download App</span>
+                  <span>
+                    Download App
+                  </span>
 
                 </motion.button>
-
-              </motion.div>
-
-              {/* STATS */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.8,
-                  delay: 0.6,
-                }}
-                className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-8 border-t border-slate-200"
-              >
-
-                {[
-                  {
-                    number: '10,000+',
-                    label: 'Happy Students',
-                  },
-                  {
-                    number: '500+',
-                    label: 'Expert Tutors',
-                  },
-                  {
-                    number: '50+',
-                    label: 'Cities',
-                  },
-                  {
-                    number: '98%',
-                    label: 'Success Rate',
-                  },
-                ].map((stat, index) => (
-
-                  <motion.div
-                    key={stat.label}
-                    initial={{
-                      opacity: 0,
-                      scale: 0.8,
-                    }}
-                    animate={{
-                      opacity: 1,
-                      scale: 1,
-                    }}
-                    transition={{
-                      duration: 0.5,
-                      delay:
-                        0.7 + index * 0.1,
-                    }}
-                    className="text-left"
-                  >
-
-                    <div className="text-2xl sm:text-3xl font-bold text-slate-900 mb-1">
-                      {stat.number}
-                    </div>
-
-                    <div className="text-xs sm:text-sm text-slate-500">
-                      {stat.label}
-                    </div>
-
-                  </motion.div>
-
-                ))}
 
               </motion.div>
 
             </motion.div>
           </div>
 
-          {/* RIGHT IMAGE */}
+          {/* IMAGE */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{
+              opacity: 0,
+              x: 30,
+            }}
+            animate={{
+              opacity: 1,
+              x: 0,
+            }}
             transition={{
               duration: 0.8,
               delay: 0.4,
@@ -291,14 +306,83 @@ export function Hero() {
         </div>
       </section>
 
-      {/* TUTOR FORM POPUP */}
-      {showForm && (
+      {/* CATEGORY SELECTOR */}
+      {(showForm || showDemoForm) &&
+        !selectedCategory && (
+
+        <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/50 p-4">
+
+          <div className="bg-white rounded-3xl p-10 w-full max-w-md">
+
+            <h2 className="text-3xl font-bold text-center mb-8">
+              Select Category
+            </h2>
+
+            <div className="space-y-5">
+
+              {/* SCHOOL */}
+              <button
+                onClick={() =>
+                  setSelectedCategory(
+                    'school'
+                  )
+                }
+                className="w-full border-2 border-slate-300 hover:border-[#00a992] rounded-2xl py-5 text-xl font-semibold transition-all"
+              >
+                School Tuition
+              </button>
+
+              {/* PROGRAMMING */}
+              <button
+                onClick={() =>
+                  setSelectedCategory(
+                    'programming'
+                  )
+                }
+                className="w-full border-2 border-slate-300 hover:border-[#00a992] rounded-2xl py-5 text-xl font-semibold transition-all"
+              >
+                Programming
+              </button>
+
+              {/* LANGUAGES */}
+              <button
+                onClick={() =>
+                  setSelectedCategory(
+                    'languages'
+                  )
+                }
+                className="w-full border-2 border-slate-300 hover:border-[#00a992] rounded-2xl py-5 text-xl font-semibold transition-all"
+              >
+                Languages
+              </button>
+
+            </div>
+
+            {/* CLOSE */}
+            <button
+              onClick={() => {
+
+                setShowForm(false);
+                setShowDemoForm(false);
+
+              }}
+              className="w-full mt-8 bg-black text-white py-3 rounded-xl"
+            >
+              Close
+            </button>
+
+          </div>
+        </div>
+      )}
+
+      {/* TEACHER FORM */}
+      {showForm &&
+        selectedCategory && (
 
         <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/50 p-4">
 
           <div className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto">
 
-            {/* CLOSE BUTTON */}
             <button
               onClick={() =>
                 setShowForm(false)
@@ -308,37 +392,45 @@ export function Hero() {
               ✕
             </button>
 
-            <TeacherForm />
+            <TeacherForm
+              category={
+                selectedCategory
+              }
+            />
 
           </div>
         </div>
-
       )}
 
-      {/* DEMO FORM POPUP */}
-      {showDemoForm && (
+      {/* DEMO FORM */}
+      {showDemoForm &&
+        selectedCategory && (
 
         <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/50 p-4">
 
           <div className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto">
 
-            {/* CLOSE BUTTON */}
             <button
               onClick={() =>
-                setShowDemoForm(false)
+                setShowDemoForm(
+                  false
+                )
               }
               className="absolute top-4 right-4 bg-white rounded-full px-4 py-2 shadow-lg z-50 text-black font-bold"
             >
               ✕
             </button>
 
-            <DemoForm />
+            <DemoForm
+              category={
+                selectedCategory
+              }
+            />
 
           </div>
         </div>
-
       )}
 
     </>
   );
-} 
+}
