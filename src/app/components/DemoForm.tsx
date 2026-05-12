@@ -370,11 +370,11 @@ ${formData.requirements}
                   </option>
 
                   <option>
-                    1st PU
+                    11th Standard
                   </option>
 
                   <option>
-                    2nd PU
+                   12th Standard
                   </option>
 
                   <option>
