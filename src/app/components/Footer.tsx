@@ -8,53 +8,55 @@ import {
   Facebook,
 } from 'lucide-react';
 
-import logo from '../../imports/logo-transparent.png';
+import logo from '../../imports/logo.png';
 
 export function Footer() {
 
   return (
 
-    <footer className="bg-slate-950 text-white pt-16 pb-8">
+    <footer className="bg-[#063831] text-white pt-20 pb-8 w-full">
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <div className="w-full px-10 lg:px-20">
 
         {/* TOP SECTION */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 border-b border-slate-800 pb-12">
+        <div className="flex flex-col lg:flex-row justify-between items-start gap-16 border-b border-white/10 pb-14 w-full">
 
-          {/* COMPANY */}
-          <div>
+          {/* LEFT SIDE */}
+          <div className="max-w-[320px] flex flex-col items-start -mt-20 -ml-2">
 
             {/* LOGO */}
-            <div className="mb-4">
+            <div className="mb-2">
 
               <img
                 src={logo}
                 alt="Mi Tutora"
-                className="h-16 w-auto object-contain bg-transparent"
+                className="h-72 w-auto object-contain"
               />
 
             </div>
 
             {/* DESCRIPTION */}
-            <p className="text-slate-400 leading-relaxed mb-6">
+            <p className="text-white text-[18px] leading-10">
 
-              Trusted home tuition and online learning platform helping
-              students achieve academic excellence across India.
+              Trusted home tuition and online
+              learning platform helping students
+              achieve academic excellence across
+              India.
 
             </p>
 
             {/* SOCIAL ICONS */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-5 mt-10">
 
               {/* INSTAGRAM */}
               <a
                 href="https://www.instagram.com/mi_tutora?igsh=MXZ2M3J6YmZsOXVn0Q=="
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-pink-600 transition-all duration-300"
+                className="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all duration-300"
               >
 
-                <Instagram className="w-5 h-5 text-white" />
+                <Instagram className="w-7 h-7 text-white" />
 
               </a>
 
@@ -63,10 +65,10 @@ export function Footer() {
                 href="https://www.facebook.com/share/1CVSDJaYhA/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-blue-600 transition-all duration-300"
+                className="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all duration-300"
               >
 
-                <Facebook className="w-5 h-5 text-white" />
+                <Facebook className="w-7 h-7 text-white" />
 
               </a>
 
@@ -74,97 +76,93 @@ export function Footer() {
 
           </div>
 
-          {/* QUICK LINKS */}
-          <div>
+          {/* CENTER SECTION */}
+          <div className="flex flex-col sm:flex-row gap-24 lg:gap-36">
 
-            <h3 className="text-xl font-semibold mb-5">
-              Quick Links
-            </h3>
+            {/* QUICK LINKS */}
+            <div>
 
-            <ul className="space-y-3 text-slate-400">
+              <h3 className="text-5xl font-bold mb-10 text-white">
 
-              <li>
-                <a
-                  href="#hero"
-                  className="hover:text-[#00a992] transition"
-                >
-                  Home
-                </a>
-              </li>
+                Quick Links
 
-              <li>
-                <a
-                  href="#services"
-                  className="hover:text-[#00a992] transition"
-                >
-                  Services
-                </a>
-              </li>
+              </h3>
 
-              <li>
-                <a
-                  href="#how-it-works"
-                  className="hover:text-[#00a992] transition"
-                >
-                  How It Works
-                </a>
-              </li>
+              <ul className="space-y-7 text-white text-[22px]">
 
-              <li>
-                <a
-                  href="#testimonials"
-                  className="hover:text-[#00a992] transition"
-                >
-                  Testimonials
-                </a>
-              </li>
+                <li>
+                  <a href="#hero" className="hover:text-gray-300 transition">
+                    Home
+                  </a>
+                </li>
 
-              <li>
-                <a
-                  href="#faq"
-                  className="hover:text-[#00a992] transition"
-                >
-                  FAQ
-                </a>
-              </li>
+                <li>
+                  <a href="#services" className="hover:text-gray-300 transition">
+                    Services
+                  </a>
+                </li>
 
-            </ul>
+                <li>
+                  <a href="#how-it-works" className="hover:text-gray-300 transition">
+                    How It Works
+                  </a>
+                </li>
 
-          </div>
+                <li>
+                  <a href="#testimonials" className="hover:text-gray-300 transition">
+                    Testimonials
+                  </a>
+                </li>
 
-          {/* SERVICES */}
-          <div>
+                <li>
+                  <a href="#faq" className="hover:text-gray-300 transition">
+                    FAQ
+                  </a>
+                </li>
 
-            <h3 className="text-xl font-semibold mb-5">
-              Services
-            </h3>
+              </ul>
 
-            <ul className="space-y-3 text-slate-400">
+            </div>
 
-              <li>🏠 Home Tuition</li>
-              <li>💻 Online Classes</li>
-              <li>📘 NEET Coaching</li>
-              <li>📗 JEE Coaching</li>
-              <li>👨‍💻 Coding Classes</li>
-              <li>🌍 Language Training</li>
+            {/* SERVICES */}
+            <div>
 
-            </ul>
+              <h3 className="text-5xl font-bold mb-10 text-white">
+
+                Services
+
+              </h3>
+
+              <ul className="space-y-7 text-white text-[22px]">
+
+                <li>🏠 Home Tuition</li>
+                <li>💻 Online Classes</li>
+                <li>📘 NEET Coaching</li>
+                <li>📗 JEE Coaching</li>
+                <li>👨‍💻 Coding Classes</li>
+                <li>🌍 Language Training</li>
+
+              </ul>
+
+            </div>
 
           </div>
 
-          {/* CONTACT */}
-          <div>
+          {/* RIGHT SIDE */}
+          <div className="min-w-[320px] flex flex-col items-start lg:items-end text-left lg:text-right">
 
-            <h3 className="text-xl font-semibold mb-5">
+            <h3 className="text-5xl font-bold mb-10 text-white">
+
               Contact Us
+
             </h3>
 
-            <div className="space-y-5 text-slate-400">
+            <div className="space-y-8 text-white text-[22px]">
 
               {/* PHONE */}
-              <div className="flex items-start gap-3">
+              <div className="flex items-start gap-5 lg:justify-end">
 
-                <Phone className="w-5 h-5 text-[#00a992] mt-1" />
+                <Phone className="w-8 h-8 text-white mt-1" />
 
                 <div>
                   <p>+91 7483034168</p>
@@ -174,9 +172,9 @@ export function Footer() {
               </div>
 
               {/* EMAIL */}
-              <div className="flex items-start gap-3">
+              <div className="flex items-start gap-5 lg:justify-end">
 
-                <Mail className="w-5 h-5 text-[#00a992] mt-1" />
+                <Mail className="w-8 h-8 text-white mt-1" />
 
                 <p>
                   mitutoraeducation@gmail.com
@@ -185,9 +183,9 @@ export function Footer() {
               </div>
 
               {/* LOCATION */}
-              <div className="flex items-start gap-3">
+              <div className="flex items-start gap-5 lg:justify-end">
 
-                <MapPin className="w-5 h-5 text-[#00a992] mt-1" />
+                <MapPin className="w-8 h-8 text-white mt-1" />
 
                 <p>
                   Bengaluru, Karnataka, India
@@ -202,34 +200,31 @@ export function Footer() {
         </div>
 
         {/* POLICY LINKS */}
-        <div className="flex flex-wrap items-center justify-center gap-6 mt-8">
+        <div className="flex flex-wrap items-center justify-center gap-12 mt-12">
 
-          {/* PRIVACY */}
           <a
             href="/pdfs/privacy-policy.pdf#toolbar=0"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-slate-400 hover:text-[#00a992] transition-all duration-300 text-sm"
+            className="text-white hover:text-gray-300 transition-all duration-300 text-lg"
           >
             Privacy Policy
           </a>
 
-          {/* TERMS */}
           <a
             href="/pdfs/terms-and-conditions.pdf#toolbar=0"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-slate-400 hover:text-[#00a992] transition-all duration-300 text-sm"
+            className="text-white hover:text-gray-300 transition-all duration-300 text-lg"
           >
             Terms of Service
           </a>
 
-          {/* REFUND */}
           <a
             href="/pdfs/refund-policy.pdf#toolbar=0"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-slate-400 hover:text-[#00a992] transition-all duration-300 text-sm"
+            className="text-white hover:text-gray-300 transition-all duration-300 text-lg"
           >
             Refund Policy
           </a>
@@ -241,10 +236,10 @@ export function Footer() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
-          className="border-t border-slate-800 mt-8 pt-6 text-center"
+          className="border-t border-white/10 mt-10 pt-8 text-center"
         >
 
-          <p className="text-slate-500 text-sm">
+          <p className="text-white text-lg">
 
             © {new Date().getFullYear()} Mi Tutora.
             All rights reserved.
@@ -258,4 +253,5 @@ export function Footer() {
     </footer>
 
   );
+
 }
